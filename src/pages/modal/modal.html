@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="warning">
+    <ion-title>Pagina Modal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Modal</h1>
+  <hr>
+  <button ion-button (click)="close_with_params()" block color="primary">
+    Cerrar con parámetros
+  </button>
+  <button ion-button (click)="close_without_params()" block color="danger">
+    Cerrar sin parámetros
+  </button>
+</ion-content>

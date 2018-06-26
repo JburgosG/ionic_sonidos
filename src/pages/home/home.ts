@@ -1,67 +1,76 @@
 import { Component } from '@angular/core';
+import { NavController, Refresher, reorderArray } from 'ionic-angular';
 import { ANIMALES } from '../../data/data.animales';
-import { Refresher, reorderArray } from 'ionic-angular';
 import { Animal } from '../../interfaces/animal.interface';
 
+import { SettingsPage } from '../index.pages';
+
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 
 export class HomePage {
 
-  time: any;
-  audio = new Audio();
-  order:boolean = false;
-  animales: Animal[] = [];
+    time: any;
+    audio = new Audio();
+    order:boolean = false;
+    animales: Animal[] = [];
+    pageSetting:any = SettingsPage;
 
-  constructor() {
-    this.animales = ANIMALES.slice(0);
-  }
-
-  play_audio(animal:Animal){
-    this.stop_audio(animal);
-
-    if(animal.reproduciendo){
-      animal.reproduciendo = false;
-      return;
+    constructor(public navCtrl: NavController) {
+        this.animales = ANIMALES.slice(0);
     }
 
-    this.audio.src = animal.audio;
-    this.audio.load();
-    this.audio.play();
-    animal.reproduciendo = true;
+    play_audio(animal:Animal){
+        this.stop_audio(animal);
 
-    this.time = setTimeout(() => animal.reproduciendo = false, animal.duracion * 1000);
-  }
+        if(animal.reproduciendo){
+            animal.reproduciendo = false;
+            return;
+        }
 
-  delete_animal(id:number){
-    this.audio.pause();
-    this.audio.currentTime = 0;
-    this.animales.splice(id, 1);
-  }
+        this.audio.src = animal.audio;
+        this.audio.load();
+        this.audio.play();
+        animal.reproduciendo = true;
 
-  do_refresh(refresher:Refresher){
-    setTimeout(() => {
-      this.animales = ANIMALES.slice(0);
-      refresher.complete();
-    }, 1500);
-  }
-
-  order_animal(index:any){
-    this.animales = reorderArray(this.animales, index);
-  }
-
-  private stop_audio(animalSelect:Animal){
-    clearTimeout(this.time);
-    this.audio.pause();
-    this.audio.currentTime = 0;
-
-    for(let animal of this.animales){
-      if(animal.nombre != animalSelect.nombre){
-        animal.reproduciendo = false;
-      }
+        this.time = setTimeout(() => animal.reproduciendo = false, animal.duracion * 1000);
     }
 
-  }
+    delete_animal(id:number){
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.animales.splice(id, 1);
+    }
+
+    do_refresh(refresher:Refresher){
+        setTimeout(() => {
+            this.animales = ANIMALES.slice(0);
+            refresher.complete();
+        }, 1500);
+    }
+
+    order_animal(index:any){
+        this.animales = reorderArray(this.animales, index);
+    }
+
+    private stop_audio(animalSelect:Animal){
+        clearTimeout(this.time);
+        this.audio.pause();
+        this.audio.currentTime = 0;
+
+        for(let animal of this.animales){
+            if(animal.nombre != animalSelect.nombre){
+                animal.reproduciendo = false;
+            }
+        }
+
+    }
+
+    /* ------------------------------------------------------------------------------------------- */
+
+    nav_page(){
+        this.navCtrl.push(SettingsPage);
+    }
 }

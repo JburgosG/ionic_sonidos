@@ -39,4 +39,14 @@
     </ion-item-sliding>
   </ion-list>
 
+  <hr>
+
+  <button ion-button color="danger" block (click)="nav_page()">
+    Ir a pagina Settings - JS
+  </button>
+
+  <button ion-button color="secondary" block [navPush]="pageSetting">
+    Ir a pagina Settings - HTML
+  </button>
+
 </ion-content>

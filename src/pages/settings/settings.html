@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Ajustes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2>Enviando con evento</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let row of mutants" (click)="DetailPage(row)">
+      {{ row.name }}
+    </ion-item>
+  </ion-list>
+
+  <h2>Enviando con Html</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let row of mutants" [navPush]="pageMutant" [navParams]="{'mutant': row}">
+      {{ row.name }}
+    </ion-item>
+  </ion-list>
+
+  <hr>
+
+  <button ion-button (click)="activeHome()" block color="secondary">
+    Ir a Home
+  </button>
+  <button ion-button (click)="activeModal()" block color="warning">
+    Ir a Modal
+  </button>
+
+</ion-content>
