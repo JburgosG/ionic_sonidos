@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomePage ,SettingsPage, MutantDetailPage } from '../index.pages';
+import { HomePage ,SettingsPage } from '../index.pages';
 
 @Component({
     selector: 'page-tabs',

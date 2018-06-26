@@ -3,7 +3,6 @@ import { MutantDetailPage } from '../index.pages';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { ModalPage } from '../index.pages';
-import {reportMetric} from "@ionic/pro/dist/src/metrics";
 
 @Component({
     selector: 'page-settings',
