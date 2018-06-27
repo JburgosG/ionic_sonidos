@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, Refresher, reorderArray } from 'ionic-angular';
 import { ANIMALES } from '../../data/data.animales';
 import { Animal } from '../../interfaces/animal.interface';
+import { NavController, Refresher, reorderArray, MenuController } from 'ionic-angular';
 
 import { SettingsPage } from '../index.pages';
 
@@ -18,7 +18,7 @@ export class HomePage {
     animales: Animal[] = [];
     pageSetting:any = SettingsPage;
 
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController, public menuCtrl: MenuController) {
         this.animales = ANIMALES.slice(0);
     }
 
@@ -72,5 +72,9 @@ export class HomePage {
 
     nav_page(){
         this.navCtrl.push(SettingsPage);
+    }
+
+    openMenu(){
+        this.menuCtrl.toggle();
     }
 }
